@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_preferences"
+        android:contentDescription="TODO" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="395dp"
+        android:layout_height="523dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <HorizontalScrollView
+                android:id="@+id/graph1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="208dp">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/linechart"
+                        android:layout_width="800dp"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="75dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="56dp"
+        android:text="Fetching..."
+        android:textAlignment="center"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/humidity"
+        android:layout_width="75dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:textAlignment="center"
+        android:text="Fetching..."
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temperature" />
+
+    <TextView
+        android:id="@+id/windy"
+        android:layout_width="69dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="103dp"
+        android:textAlignment="center"
+        android:text="Fetching..."
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintStart_toEndOf="@+id/humidity"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/unit"
+        android:layout_width="34dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:textAlignment="center"
+        android:layout_marginTop="56dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"
+        android:text="Fetching..."
+        app:layout_constraintStart_toEndOf="@+id/temperature"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="179dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+
+        android:text="Hourly/Daily"
+        android:textOff="Hourly"
+        android:textOn="Daily"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>
