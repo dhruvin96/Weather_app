@@ -101,12 +101,12 @@
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="103dp"
-        android:textAlignment="center"
         android:text="Fetching..."
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="12sp"
+        android:textAlignment="center"
         app:autoSizeMaxTextSize="100sp"
+        app:autoSizeMinTextSize="12sp"
         app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
         app:layout_constraintStart_toEndOf="@+id/humidity"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -139,6 +139,18 @@
         android:textOn="Daily"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/weathericon"
+        android:layout_width="45dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/windy"
+        app:layout_constraintStart_toEndOf="@+id/unit"
+        app:layout_constraintTop_toBottomOf="@+id/toggleButton" />
 
 
 </android.support.constraint.ConstraintLayout>

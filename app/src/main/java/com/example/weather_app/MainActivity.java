@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -25,6 +26,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     TextView data,current_temperature,current_wind,current_humidity,unit;
     ImageButton fetch;
     ToggleButton forecast_method;
+    ImageView icon;
     private LocationManager locationManager;
     protected Location location;
     private LineChart tempchart;
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     protected ArrayList<String> time = new ArrayList<String>();
     protected String type="forecast";
     protected String filter="hourly"; // For option Hourly/Daily
-    protected String ctemperature, chumidity, cwind,cunit;
+    protected String ctemperature, chumidity, cwind,cunit,weather_icon;
 
 
     @Override
@@ -91,15 +94,18 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         current_wind = (TextView) findViewById(R.id.windy);
         unit = (TextView) findViewById(R.id.unit);
         forecast_method = (ToggleButton) findViewById(R.id.toggleButton);
+        icon = (ImageView) findViewById(R.id.weathericon);
 
         forecast_method.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     // The toggle is enabled
                     filter = "daily";
+                    new processdata().execute();
                 } else {
                     // The toggle is disabled
                     filter = "hourly";
+                    new processdata().execute();
                 }
             }
         });
@@ -594,7 +600,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
                             for (int i=0; i<data_reader.length(); i++){
                                 JSONObject sub_reader = data_reader.getJSONObject(i);
-                                concate = concate + sub_reader.getString("main");
+
+                                weather_icon = sub_reader.getString("icon");
                             }
 
                             JSONObject data_reader1 = full_data.getJSONObject("main");
@@ -680,6 +687,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 current_humidity.setText(chumidity);
                 current_wind.setText(cwind);
                 unit.setText(cunit);
+                String str = "i"+weather_icon;
+                String uri = "@drawable/"+ str;  // where myresource (without the extension) is the file
+
+                int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+
+                Drawable path = getResources().getDrawable(imageResource);
+
+                System.out.println("\n\n====="+str+"======"+path);
+                icon.setImageDrawable(path);
             }
             else{
                 data.setText("Not able to fetch data!!!!!\n Try after some time...\n"+test);
