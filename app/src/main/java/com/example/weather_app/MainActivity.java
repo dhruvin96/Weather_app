@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        data = (TextView) findViewById(R.id.editText);
+        data = (TextView) findViewById(R.id.error);
         fetch = (ImageButton) findViewById(R.id.imageButton);
         tempchart = (LineChart) findViewById(R.id.linechart);
         current_temperature = (TextView) findViewById(R.id.temperature);
@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         }
 
+        new processdata().execute();
         fetch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -208,8 +209,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(set1); // add the datasets
 
+
         // create a data object with the datasets
         LineData data = new LineData(xVals, dataSets);
+        data.setValueTextSize(15f);
 
         // set data
         tempchart.setData(data);
@@ -629,6 +632,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         tempchart.setDescription("Temperature Forecast");
                         tempchart.setScaleEnabled(false);
                         tempchart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+                        tempchart.getXAxis().setTextSize(20f);
                         tempchart.setNoDataTextDescription("Not able to load data");
                         // add data
                         setData();
@@ -684,8 +688,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 Log.i("json", s);
                 //data.setText(s);
                 current_temperature.setText(ctemperature);
-                current_humidity.setText(chumidity);
-                current_wind.setText(cwind);
+                current_humidity.setText("Humidity:"+chumidity);
+                current_wind.setText("Wind:"+cwind+"Mph");
                 unit.setText(cunit);
                 String str = "i"+weather_icon;
                 String uri = "@drawable/"+ str;  // where myresource (without the extension) is the file
