@@ -58,7 +58,7 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
     TextView data,current_temperature,current_wind,current_humidity,unit;
-    ImageButton fetch;
+    //ImageButton fetch;
     ToggleButton forecast_method;
     ImageView icon;
     private LocationManager locationManager;
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setContentView(R.layout.activity_main);
 
         data = (TextView) findViewById(R.id.error);
-        fetch = (ImageButton) findViewById(R.id.imageButton);
+        //fetch = (ImageButton) findViewById(R.id.imageButton);
         tempchart = (LineChart) findViewById(R.id.linechart);
         current_temperature = (TextView) findViewById(R.id.temperature);
         current_humidity = (TextView) findViewById(R.id.humidity);
@@ -150,16 +150,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
 
         new processdata().execute();
-        fetch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!checkInternetConenction()) {
-                    data.setText("Please connect to internet first");
-                } else {
-                    new processdata().execute();
-                }
-            }
-        });
+
     }
 
 /*    private void fetchlocation() {
