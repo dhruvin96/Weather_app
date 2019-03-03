@@ -45,6 +45,7 @@
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
+                android:paddingTop="20dp"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="433dp">
 

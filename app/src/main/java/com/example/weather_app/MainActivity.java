@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     protected String filter="hourly"; // For option Hourly/Daily
     protected String ctemperature, chumidity, cwind,cunit,weather_icon;
     protected BarChart windchart;
+    protected String aapid = "1f83b3686c0e06c50b8310c724a52a51"; // Please provide your aapdi over here
 
 
     @Override
@@ -263,6 +264,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         longitude = String.valueOf(lng);
         System.out.println("\n\n"+latitude+"\n\n");
         System.out.println("\n\n"+longitude+"\n\n");
+        data.setText("");
 
     }
 
@@ -401,7 +403,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                 .appendQueryParameter("lon", longitude)
                                 .appendQueryParameter("units", "imperial")
                                 .appendQueryParameter("mode", "json")
-                                .appendQueryParameter("APPID", "1f83b3686c0e06c50b8310c724a52a51");
+                                .appendQueryParameter("APPID", aapid);
 
                         url = new URL(builder.build().toString());
                     }
@@ -418,7 +420,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                 .appendQueryParameter("lon", longitude)
                                 .appendQueryParameter("units", "imperial")
                                 .appendQueryParameter("mode", "json")
-                                .appendQueryParameter("APPID", "1f83b3686c0e06c50b8310c724a52a51");
+                                .appendQueryParameter("APPID", aapid);
 
                         url = new URL(builder.build().toString());
                         //System.out.println("\n\nForecasting\n");
