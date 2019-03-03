@@ -1,0 +1,5 @@
+For generating graph in app Mpandroid library is used.
+
+For weather data openweathermap is used.
+
+Thank you to both .
