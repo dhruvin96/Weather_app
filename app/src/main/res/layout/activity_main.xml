@@ -13,7 +13,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,14 +29,35 @@
                 tools:layout_editor_absoluteY="208dp">
 
                 <LinearLayout
-                    android:layout_height="match_parent"
                     android:layout_width="wrap_content"
-                    android:orientation="horizontal" >
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <com.github.mikephil.charting.charts.LineChart
                         android:id="@+id/linechart"
                         android:layout_width="800dp"
                         android:layout_height="match_parent" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="433dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/windchart"
+                        android:layout_width="600dp"
+                        android:layout_height="match_parent"/>
+
 
                 </LinearLayout>
             </HorizontalScrollView>

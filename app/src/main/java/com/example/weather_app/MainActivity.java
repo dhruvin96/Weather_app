@@ -31,13 +31,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -79,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     protected String type="forecast";
     protected String filter="hourly"; // For option Hourly/Daily
     protected String ctemperature, chumidity, cwind,cunit,weather_icon;
+    protected BarChart windchart;
 
 
     @Override
@@ -95,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         unit = (TextView) findViewById(R.id.unit);
         forecast_method = (ToggleButton) findViewById(R.id.toggleButton);
         icon = (ImageView) findViewById(R.id.weathericon);
+        windchart = (BarChart) findViewById(R.id.windchart);
 
         forecast_method.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -196,10 +203,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         set1.setValueTextSize(9f);
         set1.setDrawFilled(true);
 
-
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(set1); // add the datasets
-
 
         // create a data object with the datasets
         LineData data = new LineData(xVals, dataSets);
@@ -207,6 +212,26 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         // set data
         tempchart.setData(data);
+
+        windchart.setDescription("Wind Speed");
+        windchart.setDescriptionTextSize(50f);
+
+
+        if(filter == "hourly"){
+            // Wind chart
+
+            ArrayList<BarEntry> BarEntry = new ArrayList<>();
+
+            for (int i = 0; i < wind_speed.size(); i++) {
+                BarEntry.add(new BarEntry(Float.parseFloat(wind_speed.get(i)), i));
+            }
+
+            BarDataSet dataSet = new BarDataSet(BarEntry, "Wind Speed");
+
+            BarData winddata = new BarData(time, dataSet);
+            dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+            windchart.setData(winddata);
+        }
 
     }
 
@@ -625,6 +650,18 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         tempchart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
                         tempchart.getXAxis().setTextSize(20f);
                         tempchart.setNoDataTextDescription("Not able to load data");
+
+                        if(filter == "daily"){
+                            windchart.invalidate();
+                            windchart.clear();
+                        }
+                        else {
+                            windchart.invalidate();
+                            windchart.setScaleEnabled(false);
+                            windchart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+                            windchart.getXAxis().setTextSize(10f);
+                        }
+
                         // add data
                         setData();
 
