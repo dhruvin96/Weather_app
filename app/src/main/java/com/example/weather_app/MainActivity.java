@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     protected String filter="hourly"; // For option Hourly/Daily
     protected String ctemperature, chumidity, cwind,cunit,weather_icon;
     protected BarChart windchart;
-    protected String aapid = "1f83b3686c0e06c50b8310c724a52a51"; // Please provide your aapdi over here
+    protected String aapid = ""; // Please provide your aapdi over here
 
 
     @Override
